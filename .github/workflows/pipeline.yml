@@ -25,6 +25,12 @@ jobs:
       - name: Unit Test
         run: python -m unittest -v test
 
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: coverage/coverage.xml
+
   SonarCloud:
     needs: Build
     runs-on: ubuntu-latest
@@ -33,6 +39,12 @@ jobs:
         with:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
+
+      - name: Download code-coverage-report artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: code-coverage-report
+
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:

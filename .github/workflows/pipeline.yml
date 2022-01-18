@@ -25,6 +25,9 @@ jobs:
       - name: Unit Test
         run: python -m unittest -v test
 
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v1.6
+
   Deploy:
     needs: Build
     runs-on: ubuntu-latest

@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from app import app
 import unittest
+import coverage
+
+cov = coverage.Coverage()
+cov.start()
 
 class Test(unittest.TestCase):
     def setUp(self):
@@ -17,3 +21,8 @@ class Test(unittest.TestCase):
     def test_conteudo(self):
         # verifica o retorno do conteudo da pagina
         self.assertEqual(self.result.data.decode('utf-8'), "Renan Soares")
+
+cov.stop()
+cov.save()
+
+cov.xml_report()

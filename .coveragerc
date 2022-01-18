@@ -26,8 +26,6 @@ exclude_lines =
 
 ignore_errors = True
 show_missing = True
-include=app.py
-exclude=test.py
 
 [html]
 directory = coverage/
